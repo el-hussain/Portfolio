@@ -509,17 +509,26 @@ footer {
         animation-timeline: view();
         animation-range: entry 0% cover 10%;
     }
-    @keyframes fade-in {
-          from { opacity: 0; }
-            to { opacity: 1; }
-            }
+    .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+}
 
-            .element {
-              animation-name: fade-in;
-                animation-timeline: view();
-                  animation-range: entry 0% cover 50%;
-                  }
-    }
+.animate-on-scroll.fade-up.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.animate-on-scroll.fade-left.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.animate-on-scroll.zoom-in.show {
+    opacity: 1;
+    transform: scale(1);
+}
 
 
 /* Media Queries */
