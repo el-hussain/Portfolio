@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
         sections.forEach(section => {
             const sectionTop = section.getBoundingClientRect().top;
             const windowHeight = window.innerHeight;
-            if (sectionTop < windowHeight * 0.75) {
+            if (sectionTop < windowHeight * 0.95) {
                 section.style.opacity = '1';
                 section.style.transform = 'translateY(0)';
             }
