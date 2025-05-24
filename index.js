@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // 📩 Contact form submission with Web3Forms and alert
+    // Contact form submission with Web3Forms and alert
     const contactForm = document.getElementById('contactForm');
     contactForm.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -51,27 +51,28 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Section animation
-    window.addEventListener('scroll', function () {
-        const sections = document.querySelectorAll('.section');
-        sections.forEach(section => {
-            const sectionTop = section.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            if (sectionTop < windowHeight * 0.95) {
-                section.style.opacity = '1';
-                section.style.transform = 'translateY(0)';
-            }
-        });
-    });
-
-    // Initial section styles
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(section => {
+    // Enhanced section animation using reusable class
+    const animatedSections = document.querySelectorAll('.animate-on-scroll');
+    animatedSections.forEach(section => {
         section.style.opacity = '0';
         section.style.transform = 'translateY(20px)';
         section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     });
-    window.dispatchEvent(new Event('scroll'));
+
+    const animateOnScroll = () => {
+        animatedSections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.9) {
+                const animation = section.dataset.animation || 'fade-up';
+                section.classList.add('show', animation);
+                section.style.opacity = '1';
+                section.style.transform = 'translateY(0)';
+            }
+        });
+    };
+
+    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('load', animateOnScroll);
 
     // Project card hover effect
     const projectCards = document.querySelectorAll('.project-card');
